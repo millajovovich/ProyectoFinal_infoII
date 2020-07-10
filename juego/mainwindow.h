@@ -22,16 +22,23 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool activacion = true;
 
 private slots:
     void on_pushButton_clicked();
-    void Mover();
+    void Mover();                       //          para actualizar las posiciones
+    void add_enemigo();                 //          para añadir enemigo
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *Scene = new QGraphicsScene;
     QGraphicsView *view;
+
     QTimer *timer;
+    QTimer *tiempo_enemigos;
+
     personaje *cuerpo;
     ataques *bala;
 

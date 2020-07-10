@@ -1,8 +1,13 @@
 #include "ataques.h"
-//#include "mainwindow.h"
+#include "mainwindow.h"
 
 ataques::~ataques()
 {   }
+
+bool ataques::getColision() const
+{
+    return colision;
+}
 
 ataques::ataques()
 {   }
@@ -34,4 +39,15 @@ void ataques::movimiento()
 {
     posx_bala+=20*0.2;                  // movimiento de la bala
     setPos(posx_bala, posy_bala);
+    if ( posx_bala > 700 ){
+        colision = true;
+    }
+
+    QList<QGraphicsItem *> colliding_items = collidingItems();  // para la colision con disparo
+    for (int i = 0, n = colliding_items.size(); i < n; ++i)
+    {
+        if (typeid(*(colliding_items[i])) == typeid(enemigo)){
+            colision = true;
+        }
+    }
 }

@@ -8,9 +8,12 @@
 
 class enemigo : public QGraphicsItem
 {
+    bool colision = false;
     double posx_enemigo;
     double posy_enemigo;
-    double vx = -5;
+    double vx = -10;
+    double vy = -10;
+    int tipo_enemigo = 0;
 
 public:
     enemigo();
@@ -25,6 +28,8 @@ public:
 
     double getPosx_enemigo() const;
     double getPosy_enemigo() const;
+
+    bool getColision() const;
 };
 
 #endif // ENEMIGO_H

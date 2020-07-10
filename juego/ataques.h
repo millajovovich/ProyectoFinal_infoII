@@ -6,6 +6,7 @@
 
 class ataques: public QGraphicsItem
 {
+    bool colision = false;
     double posx_bala;
     double posy_bala;
 
@@ -19,6 +20,8 @@ public:
 
     void movimiento();
     double getPosx_bala() const;
+
+    bool getColision() const;
 };
 
 #endif // ATAQUES_H

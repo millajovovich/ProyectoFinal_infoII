@@ -7,6 +7,7 @@
 
 class personaje: public QGraphicsItem
 {
+    int salud = 100;
     double angulo=0, posy, posx, vx=0, vy, vel=0, Ax=0, Ay=0, masa=70, radio , dist;
     double G = 1;
     double g = 9.8;
