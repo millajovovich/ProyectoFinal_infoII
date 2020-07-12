@@ -1,7 +1,7 @@
 #include "enemigo.h"
 #include "ataques.h"
 #include "mainwindow.h"
-//#include "personaje.h"
+#include "personaje.h"
 
 bool enemigo::getColision() const
 {
@@ -11,8 +11,8 @@ bool enemigo::getColision() const
 enemigo::enemigo()
 {
     //srand (time(NULL));
-    posx_enemigo = 750;
-    posy_enemigo = rand()%410+21;
+    posx_enemigo = 800;
+    posy_enemigo = rand()%410+80;
     setPos( posx_enemigo , posy_enemigo );
     tipo_enemigo = rand()%2;
 }
@@ -43,23 +43,23 @@ void enemigo::movimiento()
         posx_enemigo += vx*0.1;   //       posx = vel*tiempo
 
     else if ( tipo_enemigo == 1 ){
-        posx_enemigo += -3*0.1;
+        posx_enemigo += -10*0.1;
         posy_enemigo += vy*0.1;
 
-        if ( posy_enemigo <= 20 || posy_enemigo >= 430 )        // para hacer el efecto de rebote
+        if ( posy_enemigo <= 70 || posy_enemigo >= 510 )        // para hacer el efecto de rebote
             vy=-vy;
 
     }
     setPos( posx_enemigo , posy_enemigo );
 
-    if ( posx_enemigo < 50 ){
+    if ( posx_enemigo < 20 ){
         colision = true;
     }
 
     QList<QGraphicsItem *> colliding_items = collidingItems();  // para la colision con disparo
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
-        if (typeid(*(colliding_items[i])) == typeid(ataques)){
+        if ( typeid(*(colliding_items[i])) == typeid(ataques) || typeid(*(colliding_items[i])) == typeid(personaje) ){
             colision = true;
         }
     }

@@ -3,6 +3,8 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QList>
+#include "ataques.h"
 #include "stdio.h"
 
 
@@ -11,13 +13,15 @@ class enemigo : public QGraphicsItem
     bool colision = false;
     double posx_enemigo;
     double posy_enemigo;
-    double vx = -10;
-    double vy = -10;
+    double vx = -15;
+    double vy = -15;
     int tipo_enemigo = 0;
 
 public:
     enemigo();
     ~enemigo();
+
+    QList<ataques*> enemy;
 
     QRectF boundingRect() const ;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);

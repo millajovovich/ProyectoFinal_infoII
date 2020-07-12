@@ -5,9 +5,11 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
+
 #include "personaje.h"
 #include "ataques.h"
 #include "enemigo.h"
+
 #include <QTimer>
 #include <QList>
 
@@ -22,12 +24,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    bool activacion = true;
+    bool activacion = true;             // para confirmar, por ahora no esta en uso
+    int marcador = 0;
+
 
 private slots:
     void on_pushButton_clicked();
     void Mover();                       //          para actualizar las posiciones
     void add_enemigo();                 //          para añadir enemigo
+    void juego_terminado();             //          para anunciar game over
 
     void on_pushButton_2_clicked();
 

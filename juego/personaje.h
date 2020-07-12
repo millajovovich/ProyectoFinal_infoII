@@ -8,6 +8,8 @@
 class personaje: public QGraphicsItem
 {
     int salud = 100;
+    int puntuacion = 0;
+    int perdida = 0;                         //para anunciar que perdio
     double angulo=0, posy, posx, vx=0, vy, vel=0, Ax=0, Ay=0, masa=70, radio , dist;
     double G = 1;
     double g = 9.8;
@@ -43,6 +45,10 @@ public:
     void salto();
     bool baja_altura();                 // para confirmar la altura apropiada
 
+    int getSalud() const;
+    int getPerdida() const;
+    void setPuntuacion(int value);
+    int getPuntuacion() const;
 };
 
 #endif // PERSONAJE_H

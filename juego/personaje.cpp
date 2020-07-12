@@ -1,4 +1,6 @@
 #include "personaje.h"
+#include "enemigo.h"
+#include "mainwindow.h"
 
 int personaje::getMasa() const
 {
@@ -15,10 +17,30 @@ void personaje::setVx(double value)
     vx = value;
 }
 
+int personaje::getSalud() const
+{
+    return salud;
+}
+
+int personaje::getPerdida() const
+{
+    return perdida;
+}
+
+void personaje::setPuntuacion(int value)
+{
+    puntuacion += value;
+}
+
+int personaje::getPuntuacion() const
+{
+    return puntuacion;
+}
+
 personaje::personaje()
 {
     posx=400;
-    posy=-100;
+    posy=-200;
     vel=0;
     setPos(posx,-posy);
 }
@@ -78,9 +100,9 @@ void personaje::salto()
 
 bool personaje::baja_altura()
 {
-    if ( posy < -420 )
+    if ( posy < -500 )
         return true;
-    else if (posx < 2  ||  posx > 750 )
+    else if (posx < 10  ||  posx > 810 )
         vx = -vx;
     else
         return false;
@@ -88,9 +110,20 @@ bool personaje::baja_altura()
 
 void personaje::iteracion()
 {
+    QList<QGraphicsItem *> colliding_items = collidingItems();  // para la colision con disparo
+    for (int i = 0, n = colliding_items.size(); i < n; ++i)
+    {
+        if (typeid(*(colliding_items[i])) == typeid(enemigo) || typeid(*(colliding_items[i])) == typeid(ataques)){
+            salud -= 10;
+        }
+    }
+
     posx+=vx*delta;
     posy+=vy*delta-0.5*g*delta*delta;
     setPos(posx,-posy);
+
+    if ( salud <= 0 )
+        perdida = 1;
 }
 
 
