@@ -56,10 +56,11 @@ void enemigo::movimiento()
         colision = true;
     }
 
-    QList<QGraphicsItem *> colliding_items = collidingItems();  // para la colision con disparo
+    QList<QGraphicsItem *> colliding_items = collidingItems();  // para la colision con disparo o con jugador
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
-        if ( typeid(*(colliding_items[i])) == typeid(ataques) || typeid(*(colliding_items[i])) == typeid(personaje) ){
+        if ( typeid(*(colliding_items[i])) == typeid(ataques) || typeid(*(colliding_items[i])) == typeid(personaje)
+             || typeid(*(colliding_items[i])) == typeid(personaje2)){
             colision = true;
         }
     }

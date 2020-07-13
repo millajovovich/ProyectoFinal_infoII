@@ -17,16 +17,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ataques.cpp \
+    ataques_enemigos.cpp \
     enemigo.cpp \
+    jefes.cpp \
     main.cpp \
     mainwindow.cpp \
-    personaje.cpp
+    personaje.cpp \
+    personaje2.cpp
 
 HEADERS += \
     ataques.h \
+    ataques_enemigos.h \
     enemigo.h \
+    jefes.h \
     mainwindow.h \
-    personaje.h
+    personaje.h \
+    personaje2.h
 
 FORMS += \
     mainwindow.ui

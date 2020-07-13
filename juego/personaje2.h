@@ -1,11 +1,13 @@
-#ifndef PERSONAJE_H
-#define PERSONAJE_H
+#ifndef PERSONAJE2_H
+#define PERSONAJE2_H
+
+
 #include <QGraphicsItem>
 #include <QPainter>
 #include <math.h>
 
 
-class personaje: public QGraphicsItem
+class personaje2: public QGraphicsItem
 {
     double angulo=0, posy, posx, vx=0, vy, vel=0, Ax=0, Ay=0, masa=70, radio , dist;
     int salud       = 100;
@@ -21,7 +23,7 @@ class personaje: public QGraphicsItem
     int imagen      = 0;
 
 public:
-    personaje();
+    personaje2();
 
     QRectF boundingRect() const ;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);
@@ -51,4 +53,5 @@ public:
     int getPuntuacion() const;
 };
 
-#endif // PERSONAJE_H
+
+#endif // PERSONAJE2_H

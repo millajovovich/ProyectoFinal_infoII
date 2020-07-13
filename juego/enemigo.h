@@ -13,9 +13,9 @@ class enemigo : public QGraphicsItem
     bool colision = false;
     double posx_enemigo;
     double posy_enemigo;
-    double vx = -15;
-    double vy = -15;
-    int tipo_enemigo = 0;
+    double vx           = -15;
+    double vy           = -15;
+    int tipo_enemigo    = 0;
 
 public:
     enemigo();

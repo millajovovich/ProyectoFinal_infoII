@@ -4,11 +4,15 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QPainter>
 #include <QKeyEvent>
 
 #include "personaje.h"
+#include "personaje2.h"
 #include "ataques.h"
 #include "enemigo.h"
+#include "ataques_enemigos.h"
+#include "jefes.h"
 
 #include <QTimer>
 #include <QList>
@@ -25,30 +29,43 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     bool activacion = true;             // para confirmar, por ahora no esta en uso
-    int marcador = 0;
+    int marcador            = 0;
+    int verificador         = 0;                //  este es para saber si entra en escena un boss y no spawnear enemigos basicos
+    int cuenta_enemigos     = 1;                //emmpieza en uno para que no aparezca jefe empezando
+    int pantalla            = 0;
+    bool multijugador       = 0;
 
 
 private slots:
-    void on_pushButton_clicked();
     void Mover();                       //          para actualizar las posiciones
     void add_enemigo();                 //          para añadir enemigo
+    void add_boss();                 //          para añadir jefe
     void juego_terminado();             //          para anunciar game over
 
-    void on_pushButton_2_clicked();
+    //       BOTONES
+    void on_Empezar_clicked();
+    void on_continuar_clicked();
+    void on_salir_menu_clicked();
+    void on_multijugador_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *Scene = new QGraphicsScene;
-    QGraphicsView *view;
+    QGraphicsView  *view;
 
-    QTimer *timer;
-    QTimer *tiempo_enemigos;
+    //              TIEMPOS DE MOVIMIENTOS
+    QTimer *timer           = new QTimer;
+    QTimer *tiempo_enemigos = new QTimer;
 
-    personaje *cuerpo;
-    ataques *bala;
+    personaje   *cuerpo;
+    personaje2  *cuerpo2;
+    ataques     *bala;
+    jefes       *boss;
 
-    QList<ataques*> balas;
-    QList<enemigo*> enemy;
+    //              LISTAS PARA LOS MOVIMIENTOS Y CONFIMARCIONES DE COLISION
+    QList<ataques*>             balas;
+    QList<ataques_enemigos*>    balas_ene;
+    QList<enemigo*>             enemy;
 
     void keyPressEvent(QKeyEvent *evento);
 };
