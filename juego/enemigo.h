@@ -10,12 +10,17 @@
 
 class enemigo : public QGraphicsItem
 {
-    bool colision = false;
-    double posx_enemigo;
-    double posy_enemigo;
-    double vx           = -15;
-    double vy           = -15;
-    int tipo_enemigo    = 0;
+    bool    colision        = false;
+
+    double  posx_enemigo;
+    double  posy_enemigo;
+    double  vx              = -15;
+    double  vy              = -15 * (rand()%3-1);
+    double  t               = 0.1;
+
+    int     tipo_enemigo    = 0;
+    int     salud = 100;
+    int     imagen;
 
 public:
     enemigo();

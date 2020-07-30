@@ -16,21 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    agujero_negro.cpp \
+    ambiente.cpp \
     ataques.cpp \
     ataques_enemigos.cpp \
     enemigo.cpp \
+    guardado.cpp \
     jefes.cpp \
     main.cpp \
     mainwindow.cpp \
+    nubes.cpp \
     personaje.cpp \
     personaje2.cpp
 
 HEADERS += \
+    agujero_negro.h \
+    ambiente.h \
     ataques.h \
     ataques_enemigos.h \
     enemigo.h \
+    guardado.h \
     jefes.h \
     mainwindow.h \
+    nubes.h \
     personaje.h \
     personaje2.h
 

@@ -7,12 +7,13 @@
 
 class ataques: public QGraphicsItem
 {
-    bool colision = false;
-    double posx_bala;
-    double posy_bala;
+    bool    colision = false;
+    double  posx_bala;
+    double  posy_bala;
+    double  tiempo  = 0.2;
 
-    int tipo    = 0;                   //      para saber de quien arroja el ataque
-    int puntos  = 0;                 //      para saber si colisiono con un enemigo
+    int     tipo    = 0;                   //      para saber de quien arroja el ataque
+    int     puntos  = 0;                 //      para saber si colisiono con un enemigo
 
 public:
     ataques( );

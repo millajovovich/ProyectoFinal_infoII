@@ -2,6 +2,19 @@
 #include "enemigo.h"
 #include "mainwindow.h"
 
+void personaje::setSalud(int value)
+{
+    salud = value;
+}
+
+personaje::personaje()
+{
+    posx=400;
+    posy=-200;
+    vel=0;
+    setPos(posx,-posy);
+}
+
 int personaje::getMasa() const
 {
     return masa;
@@ -37,26 +50,18 @@ int personaje::getPuntuacion() const
     return puntuacion;
 }
 
-personaje::personaje()
+void personaje::setTipo_powerup(int value)
 {
-    posx=400;
-    posy=-200;
-    vel=0;
-    setPos(posx,-posy);
-}
+    tipo_powerup = value;
 
-QRectF personaje::boundingRect() const
-{
-    return QRectF(-20,-35,35,70);
-}
-
-void personaje::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
-{
-    QPixmap pixmap;
-    pixmap.load(":/imag/personaje0.png");
-    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
-    //painter->setBrush(Qt::cyan);
-    //painter->drawEllipse(boundingRect());
+    if ( value == 0 ){
+        if ( 100-salud < 50){           // para que no sobre pase el limite de salud
+            salud = 100;
+        }
+        else
+            salud += 50;
+    }
+    tipo_powerup = 0;
 }
 
 int personaje::getPosx() const
@@ -80,32 +85,12 @@ void personaje::setPosy(int value)
     setPos(posx,-posy);
 }
 
-void personaje::calculo(/*double posx2, double posy2, double masa2*/)
+void personaje::calculo(double posx2, double posy2, double masa2)
 {
-    /*angulo= atan2((posy2-posy), (posx2-posx));
+    angulo= atan2((posy2-posy), (posx2-posx));
     dist = pow(posx2-posx,2) + pow(posy2-posy,2);
     Ax += (((G*masa2)/dist) * cos(angulo));
-    Ay += (((G*masa2)/dist) * sin(angulo));*/
-    vy=vy-g*delta;
-    vel=sqrt(vy*vy+vx*vx);
-    angulo=atan2(vy,vx);
-
-}
-
-void personaje::salto()
-{
-    vy=40;
-    angulo=90;
-}
-
-bool personaje::baja_altura()
-{
-    if ( posy < -500 )
-        return true;
-    else if (posx < 10  ||  posx > 810 )
-        vx = -vx;
-    else
-        return false;
+    Ay += (((G*masa2)/dist) * sin(angulo));
 }
 
 void personaje::iteracion()
@@ -116,14 +101,60 @@ void personaje::iteracion()
         if (typeid(*(colliding_items[i])) == typeid(enemigo) || typeid(*(colliding_items[i])) == typeid(ataques_enemigos)){
             salud -= 10;
         }
+        if (typeid(*(colliding_items[i])) == typeid(agujero_negro))
+            salud = 0;
+
     }
 
-    posx+=vx*delta;
-    posy+=vy*delta-0.5*g*delta*delta;
-    setPos(posx,-posy);
+    vx = vx + Ax*delta;
+    vy = vy +( Ay - g )*delta;
+    vel = sqrt(vy*vy+vx*vx);
+    angulo = atan2(vy,vx);
 
-    if ( salud <= 0 )
+    posx += vx*delta + 0.5* Ax * delta * delta;
+    posy += vy*delta + 0.5*( Ay - g ) * delta * delta;
+    Ax = 0;
+    Ay = 0;
+
+    if ( salud <= 0 )                   //      REPRESENTA EL GAME OVER EN MAINMENU
         perdida = 1;
+
+    if ( posy > -100 ){
+        vy = 0;
+        posy = -100;
+    }
+    else if (posx < 10  ||  posx > 810 ){
+        vx = -vx;
+    }
+    else if ( posy < -500 ){
+        vy = 70;
+        posy = -500;
+        salud -= 20;
+    }
+    setPos( posx,-posy );
+}
+
+void personaje::salto()
+{
+    vy = 40;
+    imagen = !imagen;
+}
+
+
+QRectF personaje::boundingRect() const
+{
+    return QRectF(-20,-35,35,70);
+}
+
+void personaje::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
+{
+    QPixmap pixmap, pixmap1;
+    pixmap.load(":/imag/personaje0.png");
+    pixmap1.load(":/imag/perso12.png");
+    if (imagen == 0)
+        painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
+    else
+        painter->drawPixmap(boundingRect(),pixmap1,pixmap.rect());
 }
 
 
