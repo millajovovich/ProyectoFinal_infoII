@@ -485,7 +485,6 @@ void MainWindow::on_multijugador_clicked()
     cuerpo2 = new personaje2();
     Scene->addItem(cuerpo2);
 
-    ui->lcdNumber->     show();
     ui->nombre_1->      show();
     ui->nombre_2->      show();
     ui->progressBar_1-> show();
@@ -582,6 +581,9 @@ void MainWindow::on_salir_menu_clicked()
     verificador_esp  = 0;
     cuenta_enemigos  = 1;
     nivel            = 1;
+    marcador         = 0;
+
+    ui->lcdNumber->display(marcador);
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo_intro.png")));
 }
 
