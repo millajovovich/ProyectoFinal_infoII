@@ -1,6 +1,8 @@
 #include "stdio.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
+using namespace std;
 
 #include <QGraphicsItem>
 
@@ -449,7 +451,6 @@ void MainWindow::on_solo_jugador_clicked()
     cuerpo = new personaje();
     Scene->addItem(cuerpo);
 
-    marcador = 0;
     verificador = 0;
     verificador_esp = 1;
 

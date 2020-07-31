@@ -672,7 +672,7 @@ color: rgb(255, 0, 0);</string>
         <item>
          <widget class="QLineEdit" name="nombre_ing">
           <property name="maxLength">
-           <number>15</number>
+           <number>10</number>
           </property>
          </widget>
         </item>
