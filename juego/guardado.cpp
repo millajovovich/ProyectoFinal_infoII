@@ -1,4 +1,6 @@
 #include "guardado.h"
+#include <iostream>
+using namespace std;
 
 guardado::guardado()
 {

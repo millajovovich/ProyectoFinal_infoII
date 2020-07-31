@@ -633,7 +633,7 @@ void MainWindow::on_guardar_clicked()
 {
     icon->play();
 
-    datos->guardado_datos(to_string(vida), to_string(marc), to_string(lvl));
+    datos->guardado_datos(to_string(cuerpo->getSalud()), to_string(marcador), to_string(nivel));
 
     juego_on = false;
 
