@@ -893,6 +893,33 @@ color: rgb(255, 0, 0);</string>
      <string>TUTORIAL</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="cerrar_sesion">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Goudy Stout</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);
+border-image: url(:/imag/boton.png);
+</string>
+    </property>
+    <property name="text">
+     <string>CERRAR SESION</string>
+    </property>
+   </widget>
    <zorder>graphicsView</zorder>
    <zorder>espacio</zorder>
    <zorder>gameover</zorder>
@@ -915,6 +942,7 @@ color: rgb(255, 0, 0);</string>
    <zorder>cargar</zorder>
    <zorder>volver</zorder>
    <zorder>tutorial</zorder>
+   <zorder>cerrar_sesion</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

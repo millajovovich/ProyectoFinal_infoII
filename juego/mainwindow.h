@@ -124,5 +124,6 @@ private slots:
     void on_reiniciar_clicked();
     void on_volver_clicked();
     void on_tutorial_clicked();
+    void on_cerrar_sesion_clicked();
 };
 #endif // MAINWINDOW_H

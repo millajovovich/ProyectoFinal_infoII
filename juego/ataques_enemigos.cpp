@@ -85,12 +85,8 @@ QRectF ataques_enemigos::boundingRect() const
 
 void ataques_enemigos::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    //painter->setBrush(Qt::black);
-    //QPixmap *pixmap;
-    //painter->drawPixmap(0, 0, *pixmap, 0, 50, 1000, 100);
-
     if (tipo == 0){
-        painter->setBrush(Qt::black);
+        painter->setBrush(Qt::red);
         painter->drawEllipse(boundingRect());
     }
 

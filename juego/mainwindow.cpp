@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ganador->       hide();
     ui->tutorial->      hide();
     ui->volver->        hide();
+    ui->cerrar_sesion-> hide();
 
     ui->label_6->       hide();
     ui->label_7->       hide();
@@ -233,7 +234,6 @@ void MainWindow::Mover( )
     }
 
 }
-
 
 void MainWindow::add_enemigo()
 {
@@ -470,6 +470,7 @@ void MainWindow::on_solo_jugador_clicked()
     ui->multijugador->  hide();
     ui->cargar->        hide();
     ui->tutorial->      hide();
+    ui->cerrar_sesion-> hide();
 
     intro->play();
 
@@ -501,6 +502,7 @@ void MainWindow::on_multijugador_clicked()
     ui->multijugador->hide();
     ui->cargar->      hide();
     ui->tutorial->    hide();
+    ui->cerrar_sesion-> hide();
 
     intro->play();
 
@@ -562,6 +564,7 @@ void MainWindow::on_salir_menu_clicked()
     ui->multijugador->  show();
     ui->cargar->        show();
     ui->tutorial->      show();
+    ui->cerrar_sesion-> show();
 
     ui->completado->    hide();
     ui->score->         hide();
@@ -599,10 +602,11 @@ void MainWindow::on_registrar_clicked()
         ui->ingreso->hide();
         ui->registro->hide();
 
-        ui->solo_jugador->show();
-        ui->multijugador->show();
-        ui->cargar->      show();
-        ui->tutorial->    show();
+        ui->solo_jugador-> show();
+        ui->multijugador-> show();
+        ui->cargar->       show();
+        ui->tutorial->     show();
+        ui->cerrar_sesion->show();
 
         ui->nombre_1->setText( ui->nombre_reg->text() );          //  colocar nombre en juego
     }
@@ -620,10 +624,11 @@ void MainWindow::on_ingresar_clicked()
         ui->ingreso->hide();
         ui->registro->hide();
 
-        ui->solo_jugador->show();
-        ui->multijugador->show();
-        ui->cargar->      show();
-        ui->tutorial->    show();
+        ui->solo_jugador-> show();
+        ui->multijugador-> show();
+        ui->cargar->       show();
+        ui->tutorial->     show();
+        ui->cerrar_sesion->show();
 
         ui->nombre_1->setText( ui->nombre_ing->text() );          //  colocar nombre en juego
     }
@@ -670,6 +675,7 @@ void MainWindow::on_cargar_clicked()
     ui->multijugador->  hide();
     ui->cargar->        hide();
     ui->tutorial->      hide();
+    ui->cerrar_sesion-> hide();
 
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo1.png")));
 
@@ -705,6 +711,7 @@ void MainWindow::on_volver_clicked()
     ui->multijugador->  show();
     ui->cargar->        show();
     ui->tutorial->      show();
+    ui->cerrar_sesion-> show();
 
     ui->volver->hide();
 
@@ -718,7 +725,24 @@ void MainWindow::on_tutorial_clicked()
     ui->multijugador->  hide();
     ui->cargar->        hide();
     ui->tutorial->      hide();
+    ui->cerrar_sesion-> hide();
     ui->volver->        show();
 
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/tutorial.png")));
+}
+
+void MainWindow::on_cerrar_sesion_clicked()
+{
+    ui->solo_jugador->  hide();
+    ui->multijugador->  hide();
+    ui->cargar->        hide();
+    ui->tutorial->      hide();
+    ui->cerrar_sesion-> hide();
+
+    ui->registro->show();
+    ui->ingreso-> show();
+
+    //  limpiar las contraseñas de ingreso anterior
+    ui->contra_ing->clear();
+    ui->contra_reg->clear();
 }
