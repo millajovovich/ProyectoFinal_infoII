@@ -453,6 +453,9 @@ void MainWindow::on_solo_jugador_clicked()
 
     verificador = 0;
     verificador_esp = 1;
+    vida = 100;
+    marc = 0;
+    lvl = 1;
 
     ui->lcdNumber->display(marcador);
 
@@ -633,7 +636,7 @@ void MainWindow::on_guardar_clicked()
 {
     icon->play();
 
-    datos->guardado_datos(to_string(cuerpo->getSalud()), to_string(marcador), to_string(nivel));
+    datos->guardado_datos(to_string(vida), to_string(marc), to_string(lvl));
 
     juego_on = false;
 
