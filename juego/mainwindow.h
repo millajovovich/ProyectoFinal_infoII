@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QPainter>
 #include <QKeyEvent>
+#include <QMediaPlayer>
 
 #include "personaje.h"
 #include "personaje2.h"
@@ -35,6 +36,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    QMediaPlayer *ata_bos = new QMediaPlayer();
+    QMediaPlayer *intro = new QMediaPlayer();
+    QMediaPlayer *lose = new QMediaPlayer();
+    QMediaPlayer *icon = new QMediaPlayer();
+    QMediaPlayer *win = new QMediaPlayer();
+    QMediaPlayer *destruc = new QMediaPlayer();
+
 
     guardado *datos = new guardado();
 

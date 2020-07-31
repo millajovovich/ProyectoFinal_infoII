@@ -18,7 +18,6 @@ int jefes::getPosy() const
 
 jefes::jefes()
 {
-
 }
 
 jefes::jefes(int pos_x, int pos_y, int lvl_ )

@@ -24,4 +24,12 @@
         <file>tutorial.png</file>
     </qresource>
     <qresource prefix="/"/>
+    <qresource prefix="/sounds">
+        <file>sonidos/destruccion.mp3</file>
+        <file>sonidos/ataque_b.mp3</file>
+        <file>sonidos/intro.mp3</file>
+        <file>sonidos/lose.mp3</file>
+        <file>sonidos/icon.mp3</file>
+        <file>sonidos/win.mp3</file>
+    </qresource>
 </RCC>

@@ -51,6 +51,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_6->       hide();
     ui->label_7->       hide();
 
+    //   SONIDOS
+    intro->setMedia(QUrl("qrc:/sounds/sonidos/intro.mp3"));
+    lose->setMedia(QUrl("qrc:/sounds/sonidos/lose.mp3"));
+    ata_bos->setMedia(QUrl("qrc:/sounds/sonidos/ataque_b.mp3"));
+    icon->setMedia(QUrl("qrc:/sounds/sonidos/icon.mp3"));
+    win->setMedia(QUrl("qrc:/sounds/sonidos/win.mp3"));
+    destruc->setMedia(QUrl("qrc:/sounds/sonidos/destruccion.mp3"));
+
+
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo_intro.png")));
 }
 
@@ -94,6 +103,7 @@ void MainWindow::Mover( )
             nivel += 1;
             tiempo_ata_jefe->stop();
 
+            destruc->play();
             tiempo_enemigos->start(5000 - 1000*nivel);      //  para subir la dificultad tra
 
             //actualizar valores de check point
@@ -155,11 +165,11 @@ void MainWindow::Mover( )
             cuenta_enemigos += 1;
 
             //      CUENTA PARA APARICION DE LOS JEFES SOLO EN JUGADOR SOLO
-            if ( multijugador == 0 && cuenta_enemigos%20*nivel == 0 && verificador == 0){
+            if ( multijugador == 0 && cuenta_enemigos%(20*nivel) == 0 && verificador == 0){
                 add_boss();
             }
             //      CUENTA PARA AUMENTO DE DIFICULTAD ENEMIGOS
-            else if ( multijugador == 1 && cuenta_enemigos%20*nivel == 0 && verificador == 0 && nivel <= 3){
+            else if ( multijugador == 1 && cuenta_enemigos%(20*nivel) == 0 && verificador == 0 && nivel <= 3){
                 tiempo_enemigos->start(4000-(1000*nivel));
                 nivel += 1;
             }
@@ -304,12 +314,15 @@ void MainWindow::ataque_boss()
         }
         ataque_jefe = !ataque_jefe;
     }
+    ata_bos->stop();
+    ata_bos->play();
 
     Scene->addItem(boss);
 }
 
 void MainWindow::juego_terminado()
 {
+    lose->play();
     if ( multijugador == 0 ){
         ui->score->setText("PUNTAJE: " + QString::number(marcador));
         ui->gameover->  show();
@@ -341,6 +354,9 @@ void MainWindow::juego_terminado()
 
 void MainWindow::juego_completado()
 {
+    destruc->stop();
+    win->play();
+
     ui->completado->show();
     ui->score->setText("PUNTAJE: " + QString::number(marcador+20));
     ui->score->  show();
@@ -388,7 +404,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if( evento->key()==Qt::Key_J ){
             cuerpo2->setVx(-5);
         }
-        if( evento->key()==Qt::Key_0 ){
+        if( evento->key()==Qt::Key_0 || evento->key()==Qt::Key_O){
             balas.append(new ataques(cuerpo2->getPosx()+20, -cuerpo2->getPosy(), 0));
             Scene->addItem(balas.back());
         }
@@ -416,7 +432,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         verificador_esp = false;
 
         timer->start(15);
-        tiempo_enemigos->start(4000);
+        tiempo_enemigos->start(4000-(1000*nivel));
         tiempo_nubes->start(30000);
         tiempo_agujero->start(35000);
         tiempo_amb->start(20000);
@@ -429,6 +445,8 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 //                                              BOTONES USADOS
 void MainWindow::on_solo_jugador_clicked()
 {
+    icon->play();
+
     cuerpo = new personaje();
     Scene->addItem(cuerpo);
 
@@ -450,11 +468,15 @@ void MainWindow::on_solo_jugador_clicked()
     ui->cargar->        hide();
     ui->tutorial->      hide();
 
+    intro->play();
+
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo1.png")));
 }
 
 void MainWindow::on_multijugador_clicked()
 {
+    icon->play();
+
     multijugador = 1;
     verificador_esp = 1;
 
@@ -478,11 +500,15 @@ void MainWindow::on_multijugador_clicked()
     ui->cargar->      hide();
     ui->tutorial->    hide();
 
+    intro->play();
+
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo1.png")));
 }
 
 void MainWindow::on_continuar_clicked()
 {
+    icon->play();
+
     timer->          start();
     tiempo_enemigos->start();
     tiempo_nubes->   start();
@@ -504,6 +530,8 @@ void MainWindow::on_continuar_clicked()
 
 void MainWindow::on_salir_menu_clicked()
 {
+    icon->play();
+
     if ( multijugador == 1 ){
         delete cuerpo2;
     }
@@ -560,6 +588,8 @@ void MainWindow::on_salir_menu_clicked()
 
 void MainWindow::on_registrar_clicked()
 {
+    icon->play();
+
     if ( datos->registro( ui->nombre_reg->text().toStdString(), ui->contra_reg->text().toStdString() ) ){  //verificar ingreso correcto
         ui->ingreso->hide();
         ui->registro->hide();
@@ -579,6 +609,8 @@ void MainWindow::on_registrar_clicked()
 
 void MainWindow::on_ingresar_clicked()
 {
+    icon->play();
+
     if ( datos->ingreso( ui->nombre_ing->text().toStdString(), ui->contra_ing->text().toStdString() ) == true ){
         ui->ingreso->hide();
         ui->registro->hide();
@@ -597,6 +629,8 @@ void MainWindow::on_ingresar_clicked()
 
 void MainWindow::on_guardar_clicked()
 {
+    icon->play();
+
     datos->guardado_datos(to_string(vida), to_string(marc), to_string(lvl));
 
     juego_on = false;
@@ -606,6 +640,8 @@ void MainWindow::on_guardar_clicked()
 
 void MainWindow::on_cargar_clicked()
 {
+    icon->play();
+
     cuerpo = new personaje();
     Scene->addItem(cuerpo);
 
@@ -636,6 +672,8 @@ void MainWindow::on_cargar_clicked()
 
 void MainWindow::on_reiniciar_clicked()
 {
+    icon->play();
+
     if ( multijugador == 0 ){
         on_salir_menu_clicked();
         on_solo_jugador_clicked();
@@ -654,6 +692,8 @@ void MainWindow::on_reiniciar_clicked()
 
 void MainWindow::on_volver_clicked()
 {
+    icon->play();
+
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo_intro.png")));
 
     ui->solo_jugador->  show();
@@ -667,6 +707,8 @@ void MainWindow::on_volver_clicked()
 
 void MainWindow::on_tutorial_clicked()
 {
+    icon->play();
+
     ui->solo_jugador->  hide();
     ui->multijugador->  hide();
     ui->cargar->        hide();

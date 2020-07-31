@@ -48,7 +48,7 @@ void enemigo::movimiento()
     }
     setPos( posx_enemigo , posy_enemigo );
 
-    if ( posx_enemigo < 20 || salud <= 0){
+    if ( posx_enemigo < 0 || salud <= 0){
         colision = true;
     }
 
