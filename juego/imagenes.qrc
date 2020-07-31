@@ -3,7 +3,6 @@
         <file>fondo.png</file>
         <file>nube.png</file>
         <file>nube.gif</file>
-        <file>alien.png</file>
         <file>ata_boss1.png</file>
         <file>balas.png</file>
         <file>ata_boss2.png</file>
@@ -22,6 +21,7 @@
         <file>enemi.png</file>
         <file>fondo_intro.png</file>
         <file>tutorial.png</file>
+        <file>alien.png</file>
     </qresource>
     <qresource prefix="/"/>
     <qresource prefix="/sounds">
@@ -31,5 +31,6 @@
         <file>sonidos/lose.mp3</file>
         <file>sonidos/icon.mp3</file>
         <file>sonidos/win.mp3</file>
+        <file>sonidos/explosion.mp3</file>
     </qresource>
 </RCC>

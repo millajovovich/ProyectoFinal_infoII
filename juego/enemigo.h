@@ -3,6 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QMediaPlayer>
 #include <QList>
 #include "ataques.h"
 #include "stdio.h"
@@ -10,6 +11,9 @@
 
 class enemigo : public QGraphicsItem
 {
+
+    QMediaPlayer *explo = new QMediaPlayer();
+
     bool    colision        = false;
 
     double  posx_enemigo;

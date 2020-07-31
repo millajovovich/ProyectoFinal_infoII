@@ -59,7 +59,6 @@ MainWindow::MainWindow(QWidget *parent)
     win->setMedia(QUrl("qrc:/sounds/sonidos/win.mp3"));
     destruc->setMedia(QUrl("qrc:/sounds/sonidos/destruccion.mp3"));
 
-
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/imag/fondo_intro.png")));
 }
 

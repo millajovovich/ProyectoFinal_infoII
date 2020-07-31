@@ -10,7 +10,7 @@ bool enemigo::getColision() const
 
 enemigo::enemigo()
 {
-    //srand (time(NULL));
+    explo->setMedia(QUrl("qrc:/sounds/sonidos/explosion.mp3"));
     posx_enemigo = 820;
     posy_enemigo = rand()%390+100;
     setPos( posx_enemigo , posy_enemigo );
@@ -60,6 +60,9 @@ void enemigo::movimiento()
         }
         else if ( typeid(*(colliding_items[i])) == typeid(ataques) ){
             salud -= 20;
+            if ( salud <= 0){
+                explo->play();
+            }
         }
     }
 }

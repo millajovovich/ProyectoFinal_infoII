@@ -12,7 +12,7 @@ class jefes: public QGraphicsItem
 
     int ancho;
     int alto;
-    int salud   = 200;
+    int salud   = 1000;
     int nivel;
 
     bool destruccion = 0;                   // para confirmar la salud del boss
